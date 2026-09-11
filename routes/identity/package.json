@@ -1,0 +1,19 @@
+{
+	"name": "identity-route",
+	"private": true,
+	"route": {
+		"path": "/",
+		"page": "identity"
+	},
+	"dependencies": {
+		"@wordpress/admin-ui": "*",
+		"@wordpress/core-data": "*",
+		"@wordpress/data": "*",
+		"@wordpress/dataviews": "*",
+		"@wordpress/fields": "*",
+		"@wordpress/html-entities": "*",
+		"@wordpress/i18n": "*",
+		"@wordpress/ui": "*",
+		"@wordpress/url": "*"
+	}
+}

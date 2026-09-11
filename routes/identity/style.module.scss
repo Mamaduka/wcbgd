@@ -1,0 +1,143 @@
+// `@wordpress/fields` is bundled without its stylesheet, so the media controls
+// come through unstyled. These are the rules needed for the compact picker:
+// a drop target when empty, a thumbnail and filename row once set.
+//
+// The tokens mirror @wordpress/base-styles, which we do not import.
+.form {
+	flex: 1;
+	min-width: 0;
+	max-width: 640px;
+
+	--identity-space-xs: 4px;
+	--identity-space-sm: 8px;
+	--identity-control-height: 40px;
+	--identity-thumbnail-size: 24px;
+	--identity-radius-small: 2px;
+	--identity-radius-medium: 4px;
+	--identity-border-color: #949494;
+	--identity-separator-color: #f0f0f0;
+	--identity-overlay-background: #fff;
+	--identity-accent: var(--wp-admin-theme-color, #3858e9);
+	--identity-focus-width: var(--wp-admin-border-width-focus, 2px);
+	--identity-helptext-size: 12px;
+
+	// Reset `fieldset` browser defaults.
+	:global(fieldset.fields__media-edit) {
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	:global(.fields__media-edit-description) {
+		font-size: var(--identity-helptext-size);
+		line-height: 1.5;
+	}
+
+	:global(.fields__media-edit-picker-button) {
+		position: relative;
+		display: flex;
+		box-sizing: border-box;
+		align-items: center;
+		gap: var(--identity-space-sm);
+		min-width: 0;
+		min-height: var(--identity-control-height);
+		padding: var(--identity-space-xs) var(--identity-space-sm);
+		border: 1px dashed var(--identity-border-color);
+		border-radius: var(--identity-radius-small);
+		cursor: var(--wpds-cursor-control, pointer);
+	}
+
+	// Empty state reads as a drop target.
+	:global(.fields__media-edit-picker-button:not(.has-attachment)) {
+		border-color: var(--identity-accent);
+		color: var(--identity-accent);
+	}
+
+	:global(.fields__media-edit-picker-button:hover) {
+		color: var(--identity-accent);
+	}
+
+	:global(.fields__media-edit-picker-button[aria-disabled="true"]) {
+		opacity: 0.6;
+		cursor: default;
+	}
+
+	:global(.fields__media-edit-picker-button:focus-visible) {
+		box-shadow: 0 0 0 var(--identity-focus-width) var(--identity-accent);
+		outline: none;
+	}
+
+	// Once an attachment is set the group owns the border, not the button.
+	:global(.fields__media-edit-compact-group) {
+		overflow: hidden;
+		border: 1px dashed var(--identity-border-color);
+		border-radius: var(--identity-radius-medium);
+
+		&:global(.is-single) {
+			border-radius: var(--identity-radius-small);
+		}
+
+		:global(.fields__media-edit-picker-button) {
+			border: 0;
+			border-radius: 0;
+
+			&:focus-visible {
+				box-shadow: inset 0 0 0 var(--identity-focus-width)
+					var(--identity-accent);
+			}
+		}
+
+		:global(.fields__media-edit-compact:not(:last-child)) {
+			border-bottom: 1px solid var(--identity-separator-color);
+		}
+	}
+
+	:global(.fields__media-edit-compact) {
+		position: relative;
+		min-width: 0;
+
+		&:hover,
+		&:focus-within {
+			:global(.fields__media-edit-compact-movers) {
+				opacity: 1;
+			}
+		}
+	}
+
+	// Remove and reorder controls only surface on hover.
+	:global(.fields__media-edit-compact-movers) {
+		position: absolute;
+		top: 50%;
+		right: var(--identity-space-sm);
+		z-index: 1;
+		transform: translateY(-50%);
+		border-radius: var(--identity-radius-small);
+		background: var(--identity-overlay-background);
+		opacity: 0;
+		pointer-events: none;
+
+		* {
+			pointer-events: auto;
+		}
+	}
+
+	:global(.fields__media-edit-thumbnail) {
+		flex-shrink: 0;
+		width: var(--identity-thumbnail-size);
+		aspect-ratio: 1 / 1;
+		border-radius: var(--identity-radius-small);
+		object-fit: cover;
+	}
+
+	:global(.fields__media-edit-filename),
+	:global(.fields__media-edit-placeholder) {
+		flex: 1;
+		width: 100%;
+		min-width: 0;
+	}
+
+	:global(.fields__media-edit-placeholder) {
+		text-align: center;
+	}
+}

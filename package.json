@@ -1,0 +1,43 @@
+{
+	"name": "identity",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Mamaduka/wcbgd.git"
+	},
+	"wpPlugin": {
+		"name": "identity",
+		"handlePrefix": "identity",
+		"pages": [
+			"identity"
+		]
+	},
+	"files": [
+		"identity.php",
+		"README.md",
+		"build"
+	],
+	"scripts": {
+		"build": "wp-build",
+		"dev": "wp-build --watch"
+	},
+	"devDependencies": {
+		"@wordpress/build": "^0.23.0"
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.13.0",
+		"npm": ">=10.2.3"
+	},
+	"dependencies": {
+		"@wordpress/admin-ui": "^2.8.0",
+		"@wordpress/core-data": "^7.53.0",
+		"@wordpress/data": "^10.53.0",
+		"@wordpress/dataviews": "^18.0.0",
+		"@wordpress/fields": "^0.45.0",
+		"@wordpress/html-entities": "^4.53.0",
+		"@wordpress/i18n": "^6.26.0",
+		"@wordpress/ui": "^0.20.0",
+		"@wordpress/url": "^4.53.0"
+	}
+}
